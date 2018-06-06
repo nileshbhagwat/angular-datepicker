@@ -18,7 +18,7 @@ export class DayCalendarService {
     weekDayFormat: 'ddd',
     format: 'DD-MM-YYYY',
     allowMultiSelect: false,
-    monthFormat: 'MMM, YYYY',
+    monthFormat: 'ddd, MMM DD',
     enableMonthSelector: true,
     locale: moment.locale(),
     dayBtnFormat: 'DD',
@@ -145,12 +145,20 @@ export class DayCalendarService {
   }
 
   // todo:: add unit tests
-  getHeaderLabel(config: IDayCalendarConfigInternal, month: Moment): string {
+  getHeaderDateLabel(config: IDayCalendarConfigInternal, month: Moment): string {
     if (config.monthFormatter) {
       return config.monthFormatter(month);
     }
 
     return month.format(config.monthFormat);
+  }
+
+  getHeaderYearLabel(config: IDayCalendarConfigInternal, year: Moment): string {
+    if (config.yearFormatter) {
+      return config.yearFormatter(year);
+    }
+
+    return year.format(config.yearFormat);
   }
 
   // todo:: add unit tests
@@ -178,6 +186,7 @@ export class DayCalendarService {
       min: componentConfig.min,
       max: componentConfig.max,
       format: componentConfig.format,
+      monthFormat: 'ddd, MMM DD',
       isNavHeaderBtnClickable: true,
       allowMultiSelect: false,
       yearFormat: componentConfig.yearFormat,

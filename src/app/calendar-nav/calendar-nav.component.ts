@@ -16,7 +16,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarNavComponent {
-  @Input() label: string;
+  @Input() dateLabel: string;
+  @Input() yearLabel: string;
   @Input() isLabelClickable: boolean = false;
   @Input() showLeftNav: boolean = true;
   @Input() showLeftSecondaryNav: boolean = false;

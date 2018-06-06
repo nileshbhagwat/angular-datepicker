@@ -8,6 +8,8 @@ export interface IConfig {
   yearFormat?: string;
   yearFormatter?: (month: Moment) => string;
   format?: string;
+  monthFormat?: string;
+  monthFormatter?: (month: Moment) => string;
   isNavHeaderBtnClickable?: boolean;
   monthBtnFormat?: string;
   monthBtnFormatter?: (day: Moment) => string;

@@ -85,7 +85,8 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
   currentCalendarMode: ECalendarMode = ECalendarMode.Day;
   monthCalendarConfig: IMonthCalendarConfig;
   _shouldShowCurrent: boolean = true;
-  navLabel: string;
+  dateLabel: string;
+  yearLabel: string;
   showLeftNav: boolean;
   showRightNav: boolean;
 
@@ -108,7 +109,8 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
     this._currentDateView = current.clone();
     this.weeks = this.dayCalendarService
       .generateMonthArray(this.componentConfig, this._currentDateView, this.selected);
-    this.navLabel = this.dayCalendarService.getHeaderLabel(this.componentConfig, this._currentDateView);
+    this.dateLabel = this.dayCalendarService.getHeaderDateLabel(this.componentConfig, this._currentDateView);
+    this.yearLabel = this.dayCalendarService.getHeaderYearLabel(this.componentConfig, this._currentDateView);
     this.showLeftNav = this.dayCalendarService.shouldShowLeft(this.componentConfig.min, this.currentDateView);
     this.showRightNav = this.dayCalendarService.shouldShowRight(this.componentConfig.max, this.currentDateView);
   }

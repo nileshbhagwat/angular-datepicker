@@ -134,6 +134,8 @@ export class DatePickerComponent implements OnChanges,
   };
   selectEvent = SelectEvent;
 
+  selectedDate: Moment[] = [];
+
   set selected(selected: Moment[]) {
     this._selected = selected;
     this.inputElementValue = (<string[]>this.utilsService
@@ -439,17 +441,29 @@ export class DatePickerComponent implements OnChanges,
   }
 
   dateSelected(date: IDate, granularity: unitOfTime.Base, type: SelectEvent, ignoreClose?: boolean) {
-    this.selected = this.utilsService
-      .updateSelected(this.componentConfig.allowMultiSelect, this.selected, date, granularity);
-    if (!ignoreClose) {
-      this.onDateClick();
-    }
+    if (this.componentConfig.closeOnSelect) {
+      this.selected = this.utilsService.updateSelected(this.componentConfig.allowMultiSelect, this.selected, date, granularity);
+      if (!ignoreClose) {
+        this.onDateClick();
+      }
 
-    this.onSelect.emit({
-      date: date.date,
-      granularity,
-      type
-    });
+      this.onSelect.emit({
+        date: date.date,
+        granularity,
+        type
+      });
+    } else {
+      this.selectedDate = this.utilsService.updateSelected(this.componentConfig.allowMultiSelect, this.selected, date, granularity);
+    }
+  }
+
+  cancelDate(): void {
+    setTimeout(this.hideCalendar.bind(this), 0);
+  }
+
+  selectDate(): void {
+    this.selected = this.selectedDate;
+    setTimeout(this.hideCalendar.bind(this), 0);
   }
 
   onDateClick() {
@@ -460,7 +474,6 @@ export class DatePickerComponent implements OnChanges,
 
   onKeyPress(event: KeyboardEvent) {
     switch (event.keyCode) {
-      case (9):
       case (27):
         this.hideCalendar();
         break;

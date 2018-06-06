@@ -4,6 +4,7 @@ import {Moment} from 'moment';
 import {UtilsService} from '../common/services/utils/utils.service';
 import {IMonth} from './month.model';
 import {IMonthCalendarConfig, IMonthCalendarConfigInternal} from './month-calendar-config';
+import { IDayCalendarConfigInternal } from '../day-calendar/day-calendar-config.model';
 const moment = momentNs;
 
 @Injectable()
@@ -73,7 +74,15 @@ export class MonthCalendarService {
     return max ? max.isAfter(currentMonthView, 'year') : true;
   }
 
-  getHeaderLabel(config: IMonthCalendarConfig, year: Moment): string {
+  getHeaderDateLabel(config: IMonthCalendarConfig, month: Moment): string {
+    if (config.monthFormatter) {
+      return config.monthFormatter(month);
+    }
+
+    return month.format(config.monthFormat);
+  }
+
+  getHeaderYearLabel(config: IMonthCalendarConfig, year: Moment): string {
     if (config.yearFormatter) {
       return config.yearFormatter(year);
     }

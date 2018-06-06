@@ -190,10 +190,10 @@ export class DemoComponent {
 
   config: IDatePickerConfig = {
     firstDayOfWeek: 'su',
-    monthFormat: 'MMM, YYYY',
+    monthFormat: 'ddd, MMM DD',
     disableKeypress: false,
     allowMultiSelect: false,
-    closeOnSelect: undefined,
+    closeOnSelect: false,
     closeOnSelectDelay: 100,
     openOnFocus: true,
     openOnClick: true,

@@ -78,7 +78,8 @@ export class MonthCalendarComponent implements OnInit, OnChanges, ControlValueAc
   inputValueType: ECalendarValue;
   validateFn: DateValidator;
   _shouldShowCurrent: boolean = true;
-  navLabel: string;
+  dateLabel: string;
+  yearLabel: string;
   showLeftNav: boolean;
   showRightNav: boolean;
   showSecondaryLeftNav: boolean;
@@ -102,7 +103,8 @@ export class MonthCalendarComponent implements OnInit, OnChanges, ControlValueAc
     this._currentDateView = current.clone();
     this.yearMonths = this.monthCalendarService
       .generateYear(this.componentConfig, this._currentDateView, this.selected);
-    this.navLabel = this.monthCalendarService.getHeaderLabel(this.componentConfig, this.currentDateView);
+    this.dateLabel = this.monthCalendarService.getHeaderDateLabel(this.componentConfig, this.currentDateView);
+    this.yearLabel = this.monthCalendarService.getHeaderYearLabel(this.componentConfig, this.currentDateView);
     this.showLeftNav = this.monthCalendarService.shouldShowLeft(this.componentConfig.min, this._currentDateView);
     this.showRightNav = this.monthCalendarService.shouldShowRight(this.componentConfig.max, this.currentDateView);
     this.showSecondaryLeftNav = this.componentConfig.showMultipleYearsNavigation && this.showLeftNav;

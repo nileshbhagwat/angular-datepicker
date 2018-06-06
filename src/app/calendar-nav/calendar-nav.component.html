@@ -1,19 +1,22 @@
 <div class="dp-calendar-nav-container">
   <div class="dp-nav-header">
-    <span [hidden]="isLabelClickable"
+    <span>{{yearLabel}}</span>
+    <div>
+      <span [hidden]="isLabelClickable"
           [attr.data-hidden]="isLabelClickable"
-          [innerText]="label">
-    </span>
+          [innerText]="dateLabel">
+      </span>
     <button type="button"
             class="dp-nav-header-btn"
             [hidden]="!isLabelClickable"
             [attr.data-hidden]="!isLabelClickable"
             (click)="labelClicked()"
-            [innerText]="label">
+            [innerText]="dateLabel">
     </button>
+    </div>
   </div>
 
-  <div class="dp-nav-btns-container">
+  <!-- <div class="dp-nav-btns-container">
     <div class="dp-calendar-nav-container-left">
       <button type="button"
               class="dp-calendar-secondary-nav-left"
@@ -49,5 +52,5 @@
               (click)="rightSecondaryNavClicked()">
       </button>
     </div>
-  </div>
+  </div> -->
 </div>
